@@ -34,6 +34,10 @@ public class TerrainGenerator : MonoBehaviour {
 
     private List<GameObject> cubes;
 
+    private void Awake() {
+        terrainGeneratorUI = FindObjectOfType<TerrainGeneratorUI>();
+    }
+
     private void Start() {
         cubes = new List<GameObject>();
 
@@ -46,7 +50,6 @@ public class TerrainGenerator : MonoBehaviour {
 
         GenerateTerrain();
 
-        terrainGeneratorUI = FindObjectOfType<TerrainGeneratorUI>();
         terrainGeneratorUI.noiseScaleSlider.value = noiseScale;
         terrainGeneratorUI.octavesSlider.value = octaves;
         terrainGeneratorUI.persistenceSlider.value = persistance;
@@ -98,7 +101,9 @@ public class TerrainGenerator : MonoBehaviour {
         cubes.Add(cube);
     }
 
-    public void GenerateTerrain() { 
+    public void GenerateTerrain() {
+        meshHeightMultiplier = terrainGeneratorUI.heightMultiplierSlider.value;
+
         noiseMapGenerator = new NoiseMapGenerator();
         displayMap = FindObjectOfType<DisplayMap>();
         textureGenerator = new TextureGenerator();

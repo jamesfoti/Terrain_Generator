@@ -15,4 +15,8 @@ public class TerrainGeneratorUI : MonoBehaviour {
     public Slider offsetY;
     public TMPro.TMP_Dropdown animationsDropdown;
 
+    public void ExitProgram() {
+        Debug.Log("Exit");
+        Application.Quit();
+    }
 }
